@@ -3,12 +3,14 @@
     {
       "id": 1,
       "name": "Lesego",
-      "email": "lesego@gmail.com"
+      "email": "lesego@gmail.com",
+      "password": "lesego123"
     },
     {
       "id": 2,
       "name": "Sibonelo",
-      "email": "sibonelo@gmail.com"
+      "email": "sibonelo@gmail.com",
+      "password": "sbudakris"
     }
   ],
   "tasks": [
