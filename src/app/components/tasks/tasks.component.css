@@ -1,0 +1,37 @@
+
+.tasks-container {
+  max-width: 700px;
+  margin: 40px auto;
+  background-color: #f7f1e3; 
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: "Poppins", "Segoe UI", sans-serif;
+}
+
+
+.tasks-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.tasks-header h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #4b3f35;
+}
+
+.tasks-header p {
+  font-size: 1rem;
+  color: #5f554c;
+  margin-top: 5px;
+}
+
+
+.task-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+    margin-bottom: 30px;
+}
+

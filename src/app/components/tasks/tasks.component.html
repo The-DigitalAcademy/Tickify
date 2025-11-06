@@ -1,1 +1,38 @@
-<p>tasks works!</p>
+<div class="tasks-container">
+
+  <div class="tasks-header">
+    <h2>My Tasks</h2>
+    <p>Manage your daily to-dos efficiently</p>
+  </div>
+
+ 
+  <form class="task-form" (ngSubmit)="addTask()">
+    <input
+      type="text"
+      placeholder="Enter a new task..."
+      [(ngModel)]="newTaskTitle"
+      name="taskTitle"
+      required
+    />
+    <button type="submit">Add Task</button>
+  </form>
+
+
+  <div class="task-list">
+    <div
+      class="task-item"
+      *ngFor="let task of tasks"
+      [ngClass]="{ 'task-completed': task.completed }"
+    >
+      <input
+         type="checkbox"
+        [checked]="task.completed"
+        (change)="toggleComplete(task)"
+      />
+      <span>{{ task.title }}</span>
+      <button (click)="editTask(task)">Edit</button>
+      <button (click)="deleteTask(task.id)">Delete</button>
+    </div>
+  </div>
+</div>
+ 

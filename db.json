@@ -1,13 +1,13 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Lesego",
       "email": "lesego@gmail.com",
       "password": "lesego123"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Sibonelo",
       "email": "sibonelo@gmail.com",
       "password": "sbudakris"
@@ -15,34 +15,25 @@
   ],
   "tasks": [
     {
-      "id": 1,
-      "title": "Finish Angular To-Do App",
-      "description": "Complete delete feature ",
-      "completed": false,
-      "priority": "high",
-      "dueDate": "2025-11-10T08:00:00Z",
-      "userId": 1
-    },
-    {
-      "id": 2,
-      "title": "Learn JSON Server",
+      "id": "2",
+      "title": "Learn JSON Serversssss",
       "description": "Practice REST calls and mock backend",
-      "completed": true,
+      "completed": false,
       "priority": "medium",
       "dueDate": "2025-11-05T12:00:00Z",
       "userId": 1
     },
     {
-      "id": 3,
+      "id": "3",
       "title": "Clean Workspace",
       "description": "Organize laptop files and desk",
-      "completed": false,
+      "completed": true,
       "priority": "low",
       "dueDate": "2025-11-12T09:00:00Z",
       "userId": 2
     },
     {
-      "id": 4,
+      "id": "4",
       "title": "Update Portfolio",
       "description": "Add new full-stack projects",
       "completed": false,
@@ -51,7 +42,7 @@
       "userId": 1
     },
     {
-      "id": 5,
+      "id": "5",
       "title": "Prepare for Interview",
       "description": "Review Angular, REST, and SQL",
       "completed": true,
