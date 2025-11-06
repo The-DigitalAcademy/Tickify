@@ -8,6 +8,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { TasksComponent } from './components/tasks/tasks.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -21,10 +22,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
-
-
-
+    FormsModule,
+    FontAwesomeModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

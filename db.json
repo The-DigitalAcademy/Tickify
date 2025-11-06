@@ -15,36 +15,40 @@
   ],
   "tasks": [
     {
-      "id": "2",
-      "title": "Learn JSON Serversssss",
-      "description": "Practice REST calls and mock backend",
+      "id": 1,
+      "task": "Finish Angular To-Do App",
       "completed": false,
+      "priority": "high",
+      "dueDate": "2025-11-10T08:00:00Z",
+      "userId": 1
+    },
+    {
+      "id": 2,
+      "task": "Learn JSON Server",
+      "completed": true,
       "priority": "medium",
       "dueDate": "2025-11-05T12:00:00Z",
       "userId": 1
     },
     {
-      "id": "3",
-      "title": "Clean Workspace",
-      "description": "Organize laptop files and desk",
-      "completed": true,
+      "id": 3,
+      "task": "Clean Workspace",
+      "completed": false,
       "priority": "low",
       "dueDate": "2025-11-12T09:00:00Z",
       "userId": 2
     },
     {
-      "id": "4",
-      "title": "Update Portfolio",
-      "description": "Add new full-stack projects",
+      "id": 4,
+      "task": "Update Portfolio",
       "completed": false,
       "priority": "high",
       "dueDate": "2025-11-20T15:00:00Z",
       "userId": 1
     },
     {
-      "id": "5",
-      "title": "Prepare for Interview",
-      "description": "Review Angular, REST, and SQL",
+      "id": 5,
+      "task": "Prepare for Interview",
       "completed": true,
       "priority": "high",
       "dueDate": "2025-11-03T10:00:00Z",

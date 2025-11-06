@@ -1,75 +1,57 @@
-import { Component, OnInit } from '@angular/core';
-import { TaskService } from '../../services/task.service';
-import { Task } from '../../models/task.model';
+import { Component } from '@angular/core';
+import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+
+interface Task {
+  id: number;
+  title: string;
+  completed: boolean;
+}
 
 @Component({
   selector: 'app-tasks',
   templateUrl: './tasks.component.html',
   styleUrls: ['./tasks.component.css']
 })
-export class TasksComponent implements OnInit {
+export class TasksComponent {
+  faEdit = faEdit;
+  faTrash = faTrash;
+
   tasks: Task[] = [];
   newTaskTitle: string = '';
+  editingTaskId: number | null = null;
+  editTitle: string = '';
 
-  constructor(private taskService: TaskService) {}
-
-  ngOnInit(): void {
-    this.loadTasks();
-  }
-
-  loadTasks(): void {
-    this.taskService.getTasks().subscribe(
-      (data: Task[]) => this.tasks = data,
-      error => console.error('Error loading tasks:', error)
-    );
-  }
-
-  addTask(): void {
-    if (!this.newTaskTitle.trim()) return;
-
-    const newTask: Partial<Task> = {
-      title: this.newTaskTitle,
-      description: '',
-      completed: false,
-      priority: 'low',
-      dueDate: new Date().toISOString(),
-      userId: 1 
-    };
-
-    this.taskService.addTask(newTask).subscribe(
-      () => {
-        this.newTaskTitle = '';
-        this.loadTasks();
-      },
-      error => console.error('Error adding task:', error)
-    );
-  }
-
-  toggleComplete(task: Task): void {
-    const updatedTask: Task = { ...task, completed: !task.completed };
-    this.taskService.updateTask(task.id, updatedTask).subscribe(
-      () => this.loadTasks(),
-      error => console.error('Error updating task:', error)
-    );
-  }
-
-  editTask(task: Task): void {
-    const updatedTitle = prompt('Edit task:', task.title);
-    if (updatedTitle !== null && updatedTitle.trim() !== '') {
-      const updatedTask: Task = { ...task, title: updatedTitle };
-      this.taskService.updateTask(task.id, updatedTask).subscribe(
-        () => this.loadTasks(),
-        error => console.error('Error updating task:', error)
-      );
+  addTask() {
+    if (this.newTaskTitle.trim()) {
+      const newTask: Task = {
+        id: Date.now(),
+        title: this.newTaskTitle.trim(),
+        completed: false
+      };
+      this.tasks.push(newTask);
+      this.newTaskTitle = '';
     }
   }
 
-  deleteTask(id: number): void {
-    if (confirm('Are you sure you want to delete this task?')) {
-      this.taskService.deleteTask(id).subscribe(
-        () => this.loadTasks(),
-        error => console.error('Error deleting task:', error)
-      );
+
+  startEdit(task: Task) {
+    this.editingTaskId = task.id;
+    this.editTitle = task.title;
+  }
+
+  saveEdit(task: Task) {
+    if (this.editTitle.trim()) {
+      task.title = this.editTitle.trim();
+      this.editingTaskId = null;
+      this.editTitle = '';
     }
+  }
+
+  deleteTask(id: number) {
+    this.tasks = this.tasks.filter(t => t.id !== id);
+  }
+
+  toggleComplete(task: Task) {
+    task.completed = !task.completed;
   }
 }
