@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-tasks',
@@ -6,5 +8,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./tasks.component.css']
 })
 export class TasksComponent {
-
+  trash = faTrashCan;
+  edit = faEdit;
 }

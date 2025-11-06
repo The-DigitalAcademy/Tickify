@@ -1,1 +1,42 @@
-<p>tasks works!</p>
+<div class="todo-container">
+  <div class="left">
+    <h1>TICKIFY</h1>
+    <p>Let's Accomplish Tasks Together!</p>
+    <img src="assets/images/background.png" alt="Owl thinking" />
+  </div>
+
+  <div class="right todo-card">
+    <h2 style="color: aliceblue;">Get Things Done!</h2>
+    <div class="task-input">
+      <input type="text" placeholder="What is the task today?" />
+      <button>Add Task</button>
+    </div>
+
+    <ul class="task-list">
+      <li>
+        <label class="task-item">
+          <input type="checkbox" />
+          <span class="task-text">Do the Mini-project</span>
+        </label>
+        <div class="actions">
+          <button class="edit"><fa-icon [icon]="edit" /></button>
+          <button class="delete"><fa-icon [icon]="trash" /></button>
+        </div>
+      </li>
+
+      <li>
+        <label class="task-item">
+          <input type="checkbox" />
+          <span class="task-text">Complete the Assignment</span>
+        </label>
+        <div class="actions">
+          <button class="edit"><fa-icon [icon]="edit" /></button>
+          <button class="delete"><fa-icon [icon]="trash" /></button>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+
