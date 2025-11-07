@@ -34,7 +34,7 @@ export class TasksComponent {
   }
 
 
-  startEdit(task: Task) {
+  updateTask(task: Task) {
     this.editingTaskId = task.id;
     this.editTitle = task.title;
   }

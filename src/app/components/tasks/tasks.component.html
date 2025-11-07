@@ -51,7 +51,7 @@
         <!-- Actions -->
         <div class="actions">
           
-          <button *ngIf="editingTaskId !== task.id" (click)="startEdit(task)">
+          <button *ngIf="editingTaskId !== task.id" (click)="updateTask(task)">
             <fa-icon [icon]="faEdit"></fa-icon>
           </button>
 
