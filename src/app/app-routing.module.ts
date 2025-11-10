@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { TasksComponent } from './components/tasks/tasks.component';
+import { Store, StoreModule } from '@ngrx/store';
+import { authReducer } from './store/auth.reducer';
 
 const routes: Routes = [
   {
@@ -28,7 +30,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes), StoreModule.forRoot({auth: authReducer})],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
