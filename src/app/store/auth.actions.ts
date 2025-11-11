@@ -9,7 +9,7 @@ export const registerAction = createAction(
 
 export const registerSuccess = createAction(
     "[Auth] Register Success",
-    props<{ successMessage: string }>()
+    props<{ user: User;successMessage: string }>()
 )
 export const registerFailure = createAction(
     "[Auth] Register Failure",

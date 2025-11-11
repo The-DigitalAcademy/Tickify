@@ -12,24 +12,14 @@ export class AuthEffects {
       ofType(AuthActions.registerAction),
       mergeMap((action) =>
         this.authService.registerUser(action.user).pipe(
-          map((user) => AuthActions.registerAction({ user: user })), 
+          map((user) => AuthActions.registerSuccess({ user: user, successMessage: 'Registration successful!' })), 
           catchError((error) => of(AuthActions.registerFailure({ errorMessage: error.message })))
         )
       )
-    )
+    ),
+    { dispatch: false }
   );
 
-  registerAction$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(AuthActions.registerAction),
-        tap(() => {
-            console.log('Registration successful!');
-        }),
-        map(() => AuthActions.registerSuccess({ successMessage: 'Registration completed successfully.' })),
-        catchError((error) => of(AuthActions.registerFailure({ errorMessage: error.message })))
-    ),
-    { dispatch: false } 
-  );
 
   constructor(private actions$: Actions, private authService: AuthService) {}
 }
