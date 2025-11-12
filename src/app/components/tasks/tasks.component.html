@@ -10,7 +10,6 @@
   <div class="right todo-card">
     <h2 style="color: aliceblue;">Get Things Done!</h2>
 
-    <!-- Add Task -->
     <div class="task-input">
       <input
         type="text"
@@ -20,19 +19,15 @@
       <button (click)="addTask()">Add Task</button>
     </div>
 
-    <!-- Task List -->
     <ul class="task-list">
-      <!-- Use async pipe -->
       <li *ngFor="let task of (tasks$ | async)">
         <label class="task-item">
-          <!-- Checkbox -->
           <input
             type="checkbox"
             [checked]="task.completed"
             (change)="toggleComplete(task)"
           />
 
-          <!-- Task task -->
           <span
             class="task-text"
             [style.textDecoration]="task.completed ? 'line-through' : 'none'"
@@ -41,7 +36,6 @@
             {{ task.task }}
           </span>
 
-          <!-- Edit Mode Input -->
           <input
             *ngIf="editingTaskId === task.id"
             [(ngModel)]="edittask"
@@ -49,19 +43,15 @@
           />
         </label>
 
-        <!-- Actions -->
         <div class="actions">
-          <!-- Edit Button -->
           <button *ngIf="editingTaskId !== task.id" (click)="updateTask(task)">
             <fa-icon [icon]="faEdit"></fa-icon>
           </button>
 
-          <!-- Save Button -->
           <button *ngIf="editingTaskId === task.id" (click)="saveEdit(task)">
             💾
           </button>
 
-          <!-- Delete Button -->
           <button (click)="deleteTask(task.id)">
             <fa-icon [icon]="faTrash"></fa-icon>
           </button>

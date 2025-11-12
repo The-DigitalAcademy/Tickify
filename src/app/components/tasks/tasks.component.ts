@@ -1,4 +1,3 @@
-// src/app/components/tasks/tasks.component.ts
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
