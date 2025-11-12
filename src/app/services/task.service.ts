@@ -11,8 +11,8 @@ export class TaskService {
 
   constructor(private http: HttpClient) {}
 
-  getTasks(): Observable<Task[]> {
-    return this.http.get<Task[]>(this.apiUrl);
+  getTasks(userId: number): Observable<Task[]> {
+    return this.http.get<Task[]>(`${this.apiUrl}?userId=${userId}`);
   }
 
   getTaskById(id: number): Observable<Task> {
@@ -20,8 +20,8 @@ export class TaskService {
   }
 
   addTask(task: Partial<Task>): Observable<Task> {
-  return this.http.post<Task>(this.apiUrl, task);
-}
+    return this.http.post<Task>(this.apiUrl, task);
+  }
 
   updateTask(id: number, task: Task): Observable<Task> {
     return this.http.put<Task>(`${this.apiUrl}/${id}`, task);

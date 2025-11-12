@@ -6,56 +6,50 @@ export interface AuthState {
   user: User | null;
   isLoading: boolean;
   error: string | null;
-  successMessage: string | null;
 }
 
 export const initialState: AuthState = {
   user: null,
   isLoading: false,
   error: null,
-  successMessage: null,
 };
 
 export const authReducer = createReducer(
   initialState,
-  
   on(AuthActions.registerAction, (state) => ({
     ...state,
     isLoading: true,
-    error: null,
-    successMessage: null,
+    error: null
   })),
-  on(AuthActions.registerSuccess, (state, { user, successMessage }) => ({
+  on(AuthActions.registerSuccess, (state, { user }) => ({
     ...state,
     user,
-    isLoading: false,
-    successMessage,
-    error: null,
+    isLoading: false
   })),
   on(AuthActions.registerFailure, (state, { errorMessage }) => ({
     ...state,
     isLoading: false,
-    error: errorMessage,
-    successMessage: null,
+    errorMessage
   })),
-  
+
   on(AuthActions.loginAction, (state) => ({
     ...state,
     isLoading: true,
-    error: null,
-    successMessage: null,
+    error: null
   })),
-  on(AuthActions.loginSuccess, (state, { user, successMessage }) => ({
+  on(AuthActions.loginSuccess, (state, { user }) => ({
     ...state,
     user,
-    isLoading: false,
-    successMessage,
-    error: null,
+    isLoading: false
   })),
   on(AuthActions.loginFailure, (state, { errorMessage }) => ({
     ...state,
     isLoading: false,
-    error: errorMessage,
-    successMessage: null,
+    errorMessage
+  })),
+
+  on(AuthActions.logoutAction, (state) => ({
+    ...state,
+    user: null
   }))
 );

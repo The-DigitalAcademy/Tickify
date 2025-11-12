@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable, switchMap, throwError } from 'rxjs';
+import { map, Observable, switchMap, throwError, of } from 'rxjs';
 import { User } from '../models/user.model';
 
 @Injectable({
@@ -11,15 +11,12 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  // Registering a user
+  // Register user
   registerUser(user: Omit<User, 'id'>): Observable<User> {
-    console.log('Registering user:', user);
-    // Check if user with the same email already exists using the getUsers method
     return this.getUsers().pipe(
       map(users => users.find(u => u.email === user.email)),
       switchMap(existing => {
         if (existing) {
-          console.error('Registration failed: Email already in use.');
           return throwError(() => new Error('Email already in use'));
         }
         return this.http.post<User>(this.url, user);
@@ -27,31 +24,42 @@ export class AuthService {
     );
   }
 
-  // Retrieving all users
+  // Get all users
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.url);
   }
 
-  // Login a user
-loginUser(credentials: { email: string; password: string }): Observable<User> {
-  console.log('Logging in user:', credentials.email);
-  return this.getUsers().pipe(
-    map(users => users.find(u => u.email === credentials.email && u.password === credentials.password)),
-    switchMap(user => {
-      if (!user) {
-        console.error('Login failed: Invalid email or password.');
-        return throwError(() => new Error('Invalid email or password'));
-      }
-      // Set user as logged in
-      localStorage.setItem('user', JSON.stringify(user));
-      return this.http.get<User>(`${this.url}/${user.id}`);
-    })
-  );
-}
+  // Login user
+  loginUser(credentials: { email: string; password: string }): Observable<User> {
+    return this.getUsers().pipe(
+      map(users =>
+        users.find(
+          u => u.email === credentials.email && u.password === credentials.password
+        )
+      ),
+      switchMap(user => {
+        if (!user) {
+          return throwError(() => new Error('Invalid email or password'));
+        }
+        localStorage.setItem('user', JSON.stringify(user));
+        return this.http.get<User>(`${this.url}/${user.id}`);
+      })
+    );
+  }
 
-  // Logout a user
+  // Logout
   logout() {
     localStorage.removeItem('user');
   }
 
+  // Check if a user is logged in
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('user');
+  }
+
+  // Get current user
+  getCurrentUser(): User | null {
+    const userJson = localStorage.getItem('user');
+    return userJson ? JSON.parse(userJson) as User : null;
+  }
 }

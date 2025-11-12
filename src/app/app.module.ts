@@ -17,13 +17,15 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { taskReducer } from './store/tasks/task.reducer';
 import { TaskEffects } from './store/tasks/tasks.effects';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    TasksComponent
+    TasksComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
