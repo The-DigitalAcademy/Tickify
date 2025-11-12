@@ -12,7 +12,7 @@ import { errorSelector, isLoadingSelector } from 'src/app/store/auth/auth.select
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-  
+    isAuthenticated$!: Observable<boolean>;
   isLoading$!: Observable<boolean>;
   error$!: Observable<string | null>;
 
