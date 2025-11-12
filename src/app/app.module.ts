@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -18,6 +18,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { taskReducer } from './store/tasks/task.reducer';
 import { TaskEffects } from './store/tasks/tasks.effects';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     EffectsModule.forRoot([AuthEffects, TaskEffects]),
     BrowserAnimationsModule,
     NgxSpinnerModule,
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     
   ],
   providers: [],
