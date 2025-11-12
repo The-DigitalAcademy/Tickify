@@ -15,28 +15,12 @@
   ],
   "tasks": [
     {
-      "id": "1",
-      "task": "Finish Angular To-Do App",
-      "completed": false,
-      "priority": "high",
-      "dueDate": "2025-11-10T08:00:00Z",
-      "userId": 1
-    },
-    {
       "id": "2",
       "task": "Learn JSON Server",
       "completed": true,
       "priority": "medium",
       "dueDate": "2025-11-05T12:00:00Z",
       "userId": 1
-    },
-    {
-      "id": "3",
-      "task": "Clean Workspace",
-      "completed": false,
-      "priority": "low",
-      "dueDate": "2025-11-12T09:00:00Z",
-      "userId": 2
     },
     {
       "id": "4",

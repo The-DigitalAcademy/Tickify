@@ -1,0 +1,23 @@
+<nav class="navbar">
+  <div class="navbar-container">
+    <div class="navbar-brand">
+      <a routerLink="/tasks">TICKIFY</a>
+    </div>
+    
+    <div class="navbar-menu" *ngIf="isAuthenticated$ | async">
+      <div class="navbar-user" *ngIf="user$ | async as user">
+        <span class="user-name">Welcome, {{ user.name }}</span>
+        <span class="user-email">{{ user.email }}</span>
+      </div>
+      
+      <div class="navbar-actions">
+        <a routerLink="/tasks" routerLinkActive="active" class="nav-link">
+          Tasks
+        </a>
+        <button (click)="onLogout()" class="logout-btn">
+          Logout
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>

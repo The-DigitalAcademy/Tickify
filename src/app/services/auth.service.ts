@@ -31,4 +31,27 @@ export class AuthService {
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.url);
   }
+
+  // Login a user
+loginUser(credentials: { email: string; password: string }): Observable<User> {
+  console.log('Logging in user:', credentials.email);
+  return this.getUsers().pipe(
+    map(users => users.find(u => u.email === credentials.email && u.password === credentials.password)),
+    switchMap(user => {
+      if (!user) {
+        console.error('Login failed: Invalid email or password.');
+        return throwError(() => new Error('Invalid email or password'));
+      }
+      // Set user as logged in
+      localStorage.setItem('user', JSON.stringify(user));
+      return this.http.get<User>(`${this.url}/${user.id}`);
+    })
+  );
+}
+
+  // Logout a user
+  logout() {
+    localStorage.removeItem('user');
+  }
+
 }

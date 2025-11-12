@@ -10,11 +10,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { StoreModule } from '@ngrx/store';
-import { authReducer } from './store/auth.reducer';
+import { authReducer } from './store/auth/auth.reducer';
 import { EffectsModule } from '@ngrx/effects';
-import { AuthEffects } from './store/auth.effects';
+import { AuthEffects } from './store/auth/auth.effects';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { taskReducer } from './store/tasks/task.reducer';
+import { TaskEffects } from './store/tasks/tasks.effects';
 
 @NgModule({
   declarations: [
@@ -30,8 +32,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     ReactiveFormsModule,
     FormsModule,
     FontAwesomeModule,
-    StoreModule.forRoot({auth: authReducer}),
-    EffectsModule.forRoot([AuthEffects]),
+    StoreModule.forRoot({auth: authReducer, tasks: taskReducer}),
+    EffectsModule.forRoot([AuthEffects, TaskEffects]),
     BrowserAnimationsModule,
     NgxSpinnerModule,
     

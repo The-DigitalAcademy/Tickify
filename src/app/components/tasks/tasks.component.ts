@@ -1,57 +1,64 @@
-import { Component } from '@angular/core';
+// src/app/components/tasks/tasks.component.ts
+import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
-
-interface Task {
-  id: number;
-  title: string;
-  completed: boolean;
-}
+import { Task } from '../../models/task.model';
+import * as TaskActions from 'src/app/store/tasks/task.actions';
+import { selectAllTasks } from 'src/app/store/tasks/task.selectors';
 
 @Component({
   selector: 'app-tasks',
   templateUrl: './tasks.component.html',
   styleUrls: ['./tasks.component.css']
 })
-export class TasksComponent {
+export class TasksComponent implements OnInit {
   faEdit = faEdit;
   faTrash = faTrash;
 
-  tasks: Task[] = [];
-  newTaskTitle: string = '';
+  tasks$: Observable<Task[]> = this.store.select(selectAllTasks);
+
+  newTasktask = '';
   editingTaskId: number | null = null;
-  editTitle: string = '';
+  edittask = '';
+
+  constructor(private store: Store) {}
+
+  ngOnInit() {
+    this.store.dispatch(TaskActions.loadTasks());
+  }
 
   addTask() {
-    if (this.newTaskTitle.trim()) {
-      const newTask: Task = {
-        id: Date.now(),
-        title: this.newTaskTitle.trim(),
+    if (this.newTasktask.trim()) {
+      const newTask: Partial<Task> = {
+        task: this.newTasktask.trim(),
         completed: false
       };
-      this.tasks.push(newTask);
-      this.newTaskTitle = '';
+      this.store.dispatch(TaskActions.addTask({ task: newTask }));
+      this.newTasktask = '';
     }
   }
 
-
   updateTask(task: Task) {
     this.editingTaskId = task.id;
-    this.editTitle = task.title;
+    this.edittask = task.task;
   }
 
   saveEdit(task: Task) {
-    if (this.editTitle.trim()) {
-      task.title = this.editTitle.trim();
+    if (this.edittask.trim()) {
+      const updatedTask: Task = { ...task, task: this.edittask.trim() };
+      this.store.dispatch(TaskActions.updateTask({ task: updatedTask }));
       this.editingTaskId = null;
-      this.editTitle = '';
+      this.edittask = '';
     }
   }
 
   deleteTask(id: number) {
-    this.tasks = this.tasks.filter(t => t.id !== id);
+    this.store.dispatch(TaskActions.deleteTask({ id }));
   }
 
   toggleComplete(task: Task) {
-    task.completed = !task.completed;
+    const updatedTask: Task = { ...task, completed: !task.completed };
+    this.store.dispatch(TaskActions.updateTask({ task: updatedTask }));
   }
 }

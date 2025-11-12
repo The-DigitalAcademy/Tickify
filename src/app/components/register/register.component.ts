@@ -4,8 +4,8 @@ import { select, Store } from '@ngrx/store';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/models/user.model';
-import { registerAction,  } from 'src/app/store/auth.actions';
-import { errorSelector, isLoadingSelector } from 'src/app/store/auth.selectors';
+import { registerAction,  } from 'src/app/store/auth/auth.actions';
+import { errorSelector, isLoadingSelector } from 'src/app/store/auth/auth.selectors';
 
 @Component({
   selector: 'app-register',

@@ -4,7 +4,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { TasksComponent } from './components/tasks/tasks.component';
 import { Store, StoreModule } from '@ngrx/store';
-import { authReducer } from './store/auth.reducer';
+import { authReducer } from './store/auth/auth.reducer';
 
 const routes: Routes = [
   {

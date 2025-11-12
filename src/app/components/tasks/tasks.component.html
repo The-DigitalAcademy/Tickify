@@ -6,61 +6,62 @@
     <img src="assets/images/background.png" alt="Owl thinking" />
   </div>
 
-  
+  <!-- RIGHT SIDE -->
   <div class="right todo-card">
     <h2 style="color: aliceblue;">Get Things Done!</h2>
 
-   
+    <!-- Add Task -->
     <div class="task-input">
       <input
         type="text"
         placeholder="What is the task today?"
-        [(ngModel)]="newTaskTitle"
+        [(ngModel)]="newTasktask"
       />
       <button (click)="addTask()">Add Task</button>
     </div>
 
-    
+    <!-- Task List -->
     <ul class="task-list">
-      <li *ngFor="let task of tasks">
+      <!-- Use async pipe -->
+      <li *ngFor="let task of (tasks$ | async)">
         <label class="task-item">
-         
+          <!-- Checkbox -->
           <input
             type="checkbox"
-            [(ngModel)]="task.completed"
+            [checked]="task.completed"
             (change)="toggleComplete(task)"
           />
 
-          <!-- Task title display -->
+          <!-- Task task -->
           <span
             class="task-text"
             [style.textDecoration]="task.completed ? 'line-through' : 'none'"
             *ngIf="editingTaskId !== task.id"
           >
-            {{ task.title }}
+            {{ task.task }}
           </span>
 
-          <!-- Edit mode input -->
+          <!-- Edit Mode Input -->
           <input
             *ngIf="editingTaskId === task.id"
-            [(ngModel)]="editTitle"
+            [(ngModel)]="edittask"
             type="text"
           />
         </label>
 
         <!-- Actions -->
         <div class="actions">
-          
+          <!-- Edit Button -->
           <button *ngIf="editingTaskId !== task.id" (click)="updateTask(task)">
             <fa-icon [icon]="faEdit"></fa-icon>
           </button>
 
-          
+          <!-- Save Button -->
           <button *ngIf="editingTaskId === task.id" (click)="saveEdit(task)">
             💾
           </button>
 
-          
+          <!-- Delete Button -->
           <button (click)="deleteTask(task.id)">
             <fa-icon [icon]="faTrash"></fa-icon>
           </button>
