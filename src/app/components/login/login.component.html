@@ -1,11 +1,22 @@
 <div class="auth-container">
   <div class="auth-box">
-    <h2>Nice to see you again!</h2>
-    <form>
-      <input type="email" placeholder="Email" required />
-      <input type="password" placeholder="Password" required />
-      <button type="submit">Login</button>
+    <h1>Welcome Back</h1>
+    <p>Login to continue</p>
+
+
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <input type="email" placeholder="Email" formControlName="email" />
+
+
+      <input type="password" placeholder="Password" formControlName="password" />
+      <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error">
+        Password must be at least 5 characters
+      </div>
+
+      <button type="submit" [disabled]="loginForm.invalid">Login</button>
     </form>
+
     <p class="switch">Don't have an account? <a routerLink="/register">Register</a></p>
   </div>
 </div>
+﻿
