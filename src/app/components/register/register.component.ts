@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/models/user.model';
 import { registerAction,  } from 'src/app/store/auth/auth.actions';
@@ -17,15 +16,11 @@ export class RegisterComponent implements OnInit {
   isLoading$!: Observable<boolean>;
   error$!: Observable<string | null>;
 
-  constructor(private store: Store, private spinner: NgxSpinnerService) {}
+  constructor(private store: Store) {}
 
   ngOnInit() {
     this.isLoading$ = this.store.pipe(select(isLoadingSelector));
     this.error$ = this.store.pipe(select(errorSelector));
-    this.spinner.show();
-    setTimeout(() => {
-      this.spinner.hide();
-    }, 5000);
   
   }
 
@@ -47,12 +42,6 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  showSpinner() {
-        this.spinner.show();
-        setTimeout(() => {
-          this.spinner.hide();
-        }, 2000);
-      }
 }
 
 
